@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolyo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Genel Ayarlar */
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            background-color: #f0f0f0;
+        }
+
+        body {
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,80,1) 48%, rgba(0,212,255,1) 100%);
+            background-size: 200% 200%;
+            animation: gradientAnimation 15s ease infinite;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Gezinme Çubuğu */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+            transition: background-color 0.5s ease;
+        }
+
+        .navbar a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-family: 'Playfair Display', serif;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #0dcaf0;
+            text-decoration: underline;
+        }
+
+        section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            scroll-snap-align: start;
+            position: relative;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        /* Ana Sayfa */
+        #anasayfa {
+            background: transparent;
+        }
+
+        .title {
+            font-size: 5rem;
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            animation: fadeInDown 2s ease forwards;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #fff;
+            animation: fadeInUp 2s ease forwards;
+            animation-delay: 1s;
+        }
+
+        /* Hakkında Sayfası */
+        #hakkinda {
+            background-color: #111;
+        }
+
+        .about-text {
+            color: #fff;
+            font-size: 1.25rem;
+            padding: 20px;
+            max-width: 800px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        /* Projeler Sayfası */
+        #projeler {
+            background-color: #222;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            flex: 1 1 calc(25% - 40px);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.5s;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox:target {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .lightbox .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: #fff;
+            text-decoration: none;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .lightbox .close:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #111;
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #0dcaf0;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animasyonlar */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Gezinme Çubuğu -->
+    <div class="navbar">
+        <a href="#anasayfa">Ana Sayfa</a>
+        <a href="#hakkinda">Hakkında</a>
+        <a href="#projeler">Projeler</a>
+        <a href="#iletisim">İletişim</a>
+    </div>
+
+    <!-- Ana Sayfa -->
+    <section id="anasayfa">
+        <div>
+            <h1 class="title">Tuncay Ölmezoğlu</h1>
+            <p class="subtitle">Dijital Tasarım ve Görselleştirme</p>
+        </div>
+    </section>
+
+    <!-- Hakkında Sayfası -->
+    <section id="hakkinda">
+        <div>
+            <p class="about-text">2009'dan bu yana dijital tasarım, görselleştirme teknoloji ve teknikleri...</p>
+        </div>
+    </section>
+
+    <!-- Projeler Sayfası -->
+    <section id="projeler">
+        <div class="gallery">
+            <div class="gallery-item">
+                <a href="#gorsel1"><img src="gorsel1.jpg" alt="Görsel 1"></a>
+            </div>
+            <div class="gallery-item">
+                <a href="#gorsel2"><img src="gorsel2.jpeg" alt="Görsel 2"></a>
+            </div>
+            <div class="gallery-item">
+                <a href="#gorsel3"><img src="gorsel3.jpg" alt="Görsel 3"></a>
+            </div>
+            <!-- 7 more gallery items here -->
+        </div>
+    </section>
+
+    <!-- İletişim & Footer -->
+    <section id="iletisim">
+        <div class="footer">
+            <p>İletişim: <a href="mailto:email@example.com">email@example.com</a></p>
+            <p>© 2024 Tuncay Ölmezoğlu. Tüm Hakları Saklıdır.</p>
+            <p><a href="#">Instagram</a> | <a href="#">LinkedIn</a> | <a href="#">Behance</a></p>
+        </div>
+    </section>
+
+</body>
+</html>
